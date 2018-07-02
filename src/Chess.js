@@ -49,7 +49,7 @@ class ChessOdeRow extends Component {
     render() {
         return (
             <div style={this.rowStyle}>
-                {Array(this.props.noCells).fill().map((x, i) => i % 2 ? <ChessOdeCell/> : <ChessEvenCell/>)}
+                {Array(this.props.noCells).fill().map((x, i) => i % 2 ? <ChessOdeCell key={i}/> : <ChessEvenCell key={i}/>)}
             </div>
         )
     }
@@ -64,7 +64,7 @@ class ChessEvenRow extends Component {
     render() {
         return (
             <div style={this.rowStyle}>
-                {Array(this.props.noCells).fill().map((x, i) => !(i % 2) ? <ChessOdeCell/> : <ChessEvenCell/>)}
+                {Array(this.props.noCells).fill().map((x, i) => !(i % 2) ? <ChessOdeCell key={i}/> : <ChessEvenCell key={i}/>)}
             </div>
         )
     }
@@ -97,8 +97,8 @@ class ChessBoard extends Component {
     render() {
         let res = <div id="res1">
             <div>
-                <select name="board-size" id="board-size-select" onChange={this.selectHandler}>
-                    <option selected disabled value="">select board size</option>
+                <select defaultValue={"default"} name="board-size" id="board-size-select" onChange={this.selectHandler}>
+                    <option disabled={true} value="default">select board size</option>
                     <option value="4x4">4x4</option>
                     <option value="6x6">6x6</option>
                     <option value="8x8">8x8</option>
@@ -107,8 +107,8 @@ class ChessBoard extends Component {
                     <option value="6x4">6x4</option>
                 </select>
             </div>
-            {Array(this.state.noRows).fill().map((x, i) => i % 2 ? <ChessOdeRow noCells={this.state.noCols}/> :
-                <ChessEvenRow noCells={this.state.noCols}/>)}
+            {Array(this.state.noRows).fill().map((x, i) => i % 2 ? <ChessOdeRow noCells={this.state.noCols} key={i}/> :
+                <ChessEvenRow noCells={this.state.noCols} key={i}/>)}
         </div>;
 
         return (
