@@ -116,5 +116,5 @@ class ChessBoard extends Component {
         )
     }
 }
-
+// sum crappp
 export default ChessBoard;
